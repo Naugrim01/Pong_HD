@@ -1,4 +1,3 @@
-//Libraries
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <SFML/Audio.hpp>
@@ -24,39 +23,47 @@ int main()
 
 	//Font
 	sf::Font font;	//Font object
-	if (font.loadFromFile("Data/arial.ttf") == 0) //Safe way to load font
+	if (font.loadFromFile("Data/LCD.otf") == false)
 	{
+		std::cout << "Font load filed\n";
 		return 1;
 	}
 
 		//Images
-		sf::Texture tex_pad; //Pad image/texutre
+	sf::Texture tex_pad; //Pad image/texutre
 	sf::Texture tex_ball; //Ball texture
 	sf::Texture tex_background; //Background texture
 
-	//Load the 3 textures
+	//Load the textures
 	if (tex_pad.loadFromFile("Data/pad.png") == false)
 	{
-		return -1;
+		std::cout << "Pad texture load filed\n";
+		return 2;
 	}
 
 	if (tex_ball.loadFromFile("Data/ball.png") == false)
 	{
-		return -1;
+		std::cout << "Ball texture load filed\n";
+		return 2;
 	}
 
 	if (tex_background.loadFromFile("Data/background.png") == false)
 	{
-		return -1;
+		std::cout << "Background texture load filed\n";
+		return 2;
 	}
 
-	//Sounds
-	sf::SoundBuffer buff_hit; //Hit sound
 
-	//Load the sound
-	if (buff_hit.loadFromFile("Data/hit.wav") == false)
+
+	//Sounds 
+	sf::SoundBuffer buff_hit;
+	sf::Sound hit;
+	hit.setBuffer(buff_hit);
+
+	if (buff_hit.loadFromFile("Data/po.wav") == false)
 	{
-		return -1;
+		std::cout << "Hit sound failed\n";
+		return 2;
 	}
 
 	//States
@@ -64,7 +71,10 @@ int main()
 	//Variables
 
 	//Shapes
-
+	sf::RectangleShape background;
+	background.setSize(sf::Vector2f(1280, 720));
+	background.setPosition(0, 0);
+	background.setTexture(&tex_background);
 	//Game loop
 	while (window.isOpen())
 	{
@@ -81,10 +91,10 @@ int main()
 
 		//RENDERING
 		window.clear();
+		window.draw(background);
 
 		window.display();
 	}
-	///////////
 
 
 

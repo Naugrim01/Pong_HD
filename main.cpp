@@ -71,10 +71,30 @@ int main()
 	//Variables
 
 	//Shapes
+		//background
 	sf::RectangleShape background;
 	background.setSize(sf::Vector2f(1280, 720));
 	background.setPosition(0, 0);
 	background.setTexture(&tex_background);
+		//pad1
+	sf::RectangleShape pad1;
+	pad1.setSize(sf::Vector2f(30, 120));
+	pad1.setTexture(&tex_pad);
+	pad1.setPosition(30, 200);
+
+		//pad2
+	sf::RectangleShape pad2;
+	pad2.setSize(sf::Vector2f(30, 120));
+	pad2.setTexture(&tex_pad);
+	pad2.setPosition(1220, 400);
+
+		//ball
+	sf::RectangleShape ball;
+	ball.setSize(sf::Vector2f(30, 30));
+	ball.setTexture(&tex_ball);
+	ball.setPosition(600, 300);
+	
+	
 	//Game loop
 	while (window.isOpen())
 	{
@@ -92,7 +112,9 @@ int main()
 		//RENDERING
 		window.clear();
 		window.draw(background);
-
+		window.draw(pad1);
+		window.draw(pad2);
+		window.draw(ball);
 		window.display();
 	}
 

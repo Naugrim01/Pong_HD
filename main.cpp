@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 
-//Glboal variables, functions, classes
+//Global variables, functions, classes
 
 //C++ program entry point
 int main()
@@ -29,7 +29,7 @@ int main()
 		return 1;
 	}
 
-		//Images
+	//Images
 	sf::Texture tex_pad; //Pad image/texutre
 	sf::Texture tex_ball; //Ball texture
 	sf::Texture tex_background; //Background texture
@@ -67,8 +67,15 @@ int main()
 	}
 
 	//States
+	bool up = false;
+	bool down = false;
 
 	//Variables
+
+	int yVelocityPad1 = 0;
+	int xVelocityBall = -4;
+	int yVelocityBall = -4;
+
 
 	//Shapes
 		//background
@@ -105,9 +112,73 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 
+			// Key pressed
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up)
+			{
+				up = true;
+			}
+
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down)
+			{
+				down = true;
+			}
+
+			// Key released
+
+			if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Up)
+			{
+				up = false;
+			}
+
+			if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Down)
+			{
+				down = false;
+			}
+
 		}
 
 		//LOGIC
+
+			//Pad1
+		if (up == down)
+		{
+			yVelocityPad1 = 0;
+		}
+		else if (up == true)
+		{
+			yVelocityPad1 = -5;
+		}
+		else
+		{
+			yVelocityPad1 = 5;
+		}
+
+		pad1.move(0, yVelocityPad1);
+
+		//Out of bounds check
+		if (ball.getPosition().y < 0)
+		{
+			yVelocityBall*= -1;
+		}
+
+		if (pad1.getPosition().y > 690)
+		{
+			yVelocityBall *= -1;
+		}
+
+			//Ball
+		ball.move(xVelocityBall, yVelocityBall);
+		//Out of bounds check
+		if (pad1.getPosition().y < 0)
+		{
+			pad1.setPosition(30, 0);
+		}
+
+		if (pad1.getPosition().y > 600)
+		{
+			pad1.setPosition(30, 600);
+		}
+
 
 		//RENDERING
 		window.clear();

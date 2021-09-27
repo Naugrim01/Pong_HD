@@ -1,5 +1,6 @@
 ﻿  main.cpp
-C:\Users\Laptop\Documents\PONG_HD\PONG_HD\main.cpp(156,16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Laptop\Documents\PONG_HD\PONG_HD\main.cpp(170,28): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Laptop\Documents\PONG_HD\PONG_HD\main.cpp(170,13): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Laptop\Documents\PONG_HD\PONG_HD\main.cpp(157,16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Laptop\Documents\PONG_HD\PONG_HD\main.cpp(182,16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Laptop\Documents\PONG_HD\PONG_HD\main.cpp(196,28): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Laptop\Documents\PONG_HD\PONG_HD\main.cpp(196,13): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   PONG_HD.vcxproj -> C:\Users\Laptop\Documents\PONG_HD\PONG_HD\Debug\PONG_HD.exe

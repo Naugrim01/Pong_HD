@@ -75,6 +75,7 @@ int main()
 	int yVelocityPad1 = 0;
 	int xVelocityBall = -4;
 	int yVelocityBall = -4;
+	int yVelocityPad2 = 0;
 
 
 	//Shapes
@@ -155,20 +156,7 @@ int main()
 
 		pad1.move(0, yVelocityPad1);
 
-		//Out of bounds check
-		if (ball.getPosition().y < 0)
-		{
-			yVelocityBall*= -1;
-		}
-
-		if (pad1.getPosition().y > 690)
-		{
-			yVelocityBall *= -1;
-		}
-
-			//Ball
-		ball.move(xVelocityBall, yVelocityBall);
-		//Out of bounds check
+				//Out of bounds check
 		if (pad1.getPosition().y < 0)
 		{
 			pad1.setPosition(30, 0);
@@ -178,7 +166,57 @@ int main()
 		{
 			pad1.setPosition(30, 600);
 		}
+		
 
+			//Pad2
+		if (ball.getPosition().y < pad2.getPosition().y)
+		{
+			yVelocityPad2 = -4;
+		}
+
+		if (ball.getPosition().y > pad2.getPosition().y)
+		{
+			yVelocityPad2 = 4;
+		}
+
+		pad2.move(0, yVelocityPad2);
+
+		//Out of bounds check
+		if (pad2.getPosition().y < 0)
+		{
+			pad2.setPosition(1220, 0);
+		}
+
+		if (pad2.getPosition().y > 600)
+		{
+			pad2.setPosition(1220, 600);
+		}
+
+			//Ball
+		ball.move(xVelocityBall, yVelocityBall);
+				//Out of bounds check
+		if (ball.getPosition().y < 0)
+		{
+			yVelocityBall *= -1;
+			hit.play();
+		}
+
+		if (ball.getPosition().y > 690)
+		{
+			yVelocityBall *= -1;
+			hit.play();
+		}
+
+		if (ball.getGlobalBounds().intersects(pad1.getGlobalBounds()) == true)
+		{
+			xVelocityBall *= -1;
+			hit.play();
+		}
+		if (ball.getGlobalBounds().intersects(pad2.getGlobalBounds()) == true)
+		{
+			xVelocityBall *= -1;
+			hit.play();
+		}
 
 		//RENDERING
 		window.clear();

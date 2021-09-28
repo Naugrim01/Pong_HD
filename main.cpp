@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <SFML/Audio.hpp>
+#include <sstream>
 
 //Global variables, functions, classes
 
@@ -28,6 +29,12 @@ int main()
 		std::cout << "Font load filed\n";
 		return 1;
 	}
+
+	sf::Text score;
+	score.setFont(font);
+	score.setCharacterSize(45);
+	score.setFillColor(sf::Color::Green);
+	score.setPosition(570, 20);
 
 	//Images
 	sf::Texture tex_pad; //Pad image/texutre
@@ -73,10 +80,11 @@ int main()
 	//Variables
 
 	int yVelocityPad1 = 0;
-	int xVelocityBall = -4;
-	int yVelocityBall = -4;
+	int xVelocityBall = -5;
+	int yVelocityBall = -5;
 	int yVelocityPad2 = 0;
-
+	int pad1Score = 0;
+	int pad2Score = 0;
 
 	//Shapes
 		//background
@@ -218,12 +226,32 @@ int main()
 			hit.play();
 		}
 
+		if (ball.getPosition().x < -400)
+		{
+			pad2Score++;
+			ball.setPosition(600, 300);
+			xVelocityBall *= -1;
+		}
+
+		if (ball.getPosition().x > 1680)
+		{
+			pad1Score++;
+			ball.setPosition(600, 300);
+			xVelocityBall *= -1;
+		}
+
 		//RENDERING
 		window.clear();
 		window.draw(background);
 		window.draw(pad1);
 		window.draw(pad2);
 		window.draw(ball);
+
+		//Score
+		std::stringstream text;
+		text << pad1Score << " : " << pad2Score;
+		window.draw(score);
+		score.setString(text.str());
 		window.display();
 	}
 

@@ -215,12 +215,12 @@ int main()
 			hit.play();
 		}
 
-		if (ball.getGlobalBounds().intersects(pad1.getGlobalBounds()) == true)
+		if (ball.getGlobalBounds().intersects(pad1.getGlobalBounds()) == true && xVelocityBall < 0)
 		{
 			xVelocityBall *= -1;
 			hit.play();
 		}
-		if (ball.getGlobalBounds().intersects(pad2.getGlobalBounds()) == true)
+		if (ball.getGlobalBounds().intersects(pad2.getGlobalBounds()) == true && xVelocityBall > 0)
 		{
 			xVelocityBall *= -1;
 			hit.play();
